@@ -179,12 +179,12 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);ba
 .logo b em{display:block;font-style:normal;color:var(--brand-500)}
 .menu{display:flex;gap:4px;align-items:center}
 .menu>li{position:relative}
-.menu>li>a{display:flex;align-items:center;gap:4px;padding:10px 12px;font-size:14.5px;font-weight:600;border-radius:10px;color:#0e1740}
+.menu>li>a{display:flex;align-items:center;gap:4px;padding:10px 12px;font-size:13.5px;font-weight:600;border-radius:10px;color:#0e1740}
 .menu>li>a:hover{background:var(--brand-50);color:var(--brand-700)}
-.menu .dd{position:absolute;top:100%;left:0;min-width:210px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
+.menu .dd{position:absolute;top:100%;left:0;min-width:250px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}
 .menu>li:hover .dd,.menu>li:focus-within .dd,.menu>li.open .dd{opacity:1;visibility:visible;transform:none}
 .caret{font-size:11px;color:var(--brand-600)}
-.dd a{display:block;padding:9px 12px;border-radius:9px;font-size:14px;font-weight:500}
+.dd a{display:block;padding:9px 12px;border-radius:9px;font-size:13px;font-weight:500}
 .dd a:hover{background:var(--brand-50);color:var(--brand-700)}
 .nav-actions{display:flex;align-items:center;gap:12px}
 .login{font-weight:600;font-size:14.5px;display:flex;gap:6px;align-items:center}
