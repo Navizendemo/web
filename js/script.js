@@ -40,18 +40,104 @@
   })});
   document.addEventListener('click',function(e){if(!e.target.closest('.menu'))$$('.menu>li.open').forEach(function(o){o.classList.remove('open')})});
 
+
   /* hero slider */
   var slides=$$('.slide'),dots=$('#hDots'),idx=0,timer;
-  slides.forEach(function(_,i){var b=document.createElement('button');b.setAttribute('aria-label','Slide '+(i+1));b.onclick=function(){go(i,true)};dots.appendChild(b)});
-  function go(i,reset){idx=(i+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('active',k===idx)});$$('button',dots).forEach(function(b,k){b.classList.toggle('active',k===idx)});if(reset)start()}
-  function start(){clearInterval(timer);timer=setInterval(function(){go(idx+1)},5500)}
-  $('#hPrev').onclick=function(){go(idx-1,true)};$('#hNext').onclick=function(){go(idx+1,true)};
-  go(0);start();
+  var banner=$('.banner');
+  var sliderPaused=false;
+
+  // Create pagination dots
+  slides.forEach(function(_,i){
+    var b=document.createElement('button');
+    b.setAttribute('aria-label','Slide '+(i+1));
+    b.onclick=function(){go(i,true)};
+    dots.appendChild(b);
+  });
+
+  // Change slide
+  function go(i,reset){
+    idx=(i+slides.length)%slides.length;
+
+    slides.forEach(function(s,k){
+      s.classList.toggle('active',k===idx);
+    });
+
+    $$('#hDots button').forEach(function(b,k){
+      b.classList.toggle('active',k===idx);
+    });
+
+    if(reset) start();
+  }
+
+  // Start autoplay (8 seconds)
+  function start(){
+    clearInterval(timer);
+
+    if(sliderPaused) return;
+
+    timer=setInterval(function(){
+      go(idx+1);
+    },8000);
+  }
+
+  // Pause autoplay
+  function pause(){
+    sliderPaused=true;
+    clearInterval(timer);
+  }
+
+  // Resume autoplay
+  function resume(){
+    sliderPaused=false;
+    start();
+  }
+
+  // Previous and next buttons
+  $('#hPrev').onclick=function(){
+    go(idx-1,true);
+  };
+
+  $('#hNext').onclick=function(){
+    go(idx+1,true);
+  };
+
+  // Pause carousel on mouse hover
+  banner.addEventListener('mouseenter',pause);
+  banner.addEventListener('mouseleave',resume);
+
+  // Pause when keyboard focus enters banner
+  banner.addEventListener('focusin',pause);
+  banner.addEventListener('focusout',function(e){
+    if(!banner.contains(e.relatedTarget)){
+      resume();
+    }
+  });
+
+  // Initialize slider
+  go(0);
+  start();
+
   /* swipe on touch screens */
-  (function(){var bn=$('.banner'),x0=null;
-    bn.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
-    bn.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(idx+(dx<0?1:-1),true);x0=null},{passive:true});
+  (function(){
+    var bn=banner,x0=null;
+
+    bn.addEventListener('touchstart',function(e){
+      x0=e.touches[0].clientX;
+    },{passive:true});
+
+    bn.addEventListener('touchend',function(e){
+      if(x0===null)return;
+
+      var dx=e.changedTouches[0].clientX-x0;
+
+      if(Math.abs(dx)>40){
+        go(idx+(dx<0?1:-1),true);
+      }
+
+      x0=null;
+    },{passive:true});
   })();
+
 
 
   /* form validation */
