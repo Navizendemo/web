@@ -48,21 +48,113 @@ section{padding:72px 0}
 .btn-outline:hover{background:var(--brand-600);color:#fff}
 .btn-block{width:100%;justify-content:center}
 
-/* Social media brand colours */
-.social a:nth-child(1) {  background-color: #FF0000; /* YouTube */}
 
-.social a:nth-child(2) {  background: linear-gradient(45deg, #FCAF45, #DD2A7B, #8134AF, #515BD4); /* Instagram */}
+.consent-field {
+  width: 100%;
+  min-width: 0;
+}
 
-.social a:nth-child(3) {  background-color: #1877F2; /* Facebook */}
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #555;
 
-.social a:nth-child(4) {  background-color: #0A66C2; /* LinkedIn */}
+}
 
-.social a:nth-child(5) {  background-color: #0088CC; /* Telegram */}
+/* Clearly visible checkbox */
+.consent-label input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: checkbox;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  margin: 2px 0 0;
+  padding: 0;
+  text-transform: none;
+  accent-color: #263b97;
 
-/* Keep icons white */
-.social a {  color: #ffffff;}
+}
 
-.social a:hover {  filter: brightness(0.88);}
+/* Consent validation message */
+.consent-field .msg {
+  display: none;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #dc2626;
+  text-transform: none;
+}
+
+.consent-field.invalid .msg {
+  display: block;
+}
+
+.consent-label span {
+  flex: 1;
+  min-width: 0;
+  font-weight: 400;
+  text-transform: none;
+}
+
+/* Mobile adjustment */
+@media (max-width: 480px) {
+  .consent-label {
+    font-size: 11px;
+    line-height: 1.35;
+    gap: 7px;
+	text-transform: none;
+  }
+
+  .consent-label input[type="checkbox"] {
+    flex-basis: 14px;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+  }
+}
+
+/* YouTube */
+.social a:nth-child(1) {
+  background-color: #FF0000;
+}
+
+/* Instagram */
+.social a:nth-child(2) {
+  background: linear-gradient(45deg, #FCAF45, #DD2A7B, #8134AF, #515BD4);
+}
+
+/* Facebook */
+.social a:nth-child(3) {
+  background-color: #1877F2;
+}
+
+/* LinkedIn */
+.social a:nth-child(4) {
+  background-color: #0A66C2;
+}
+
+/* X */
+.social a:nth-child(5) {
+  background-color: #000000;
+}
+
+/* White icons */
+.social a {
+  color: #FFFFFF;
+}
+
+/* Hover effect */
+.social a:hover {
+  filter: brightness(0.85);
+}
 
 /* ============ TOP BAR ============ */
 .topbar{background:var(--brand-900);color:#dde2f5;font-size:13.5px}
